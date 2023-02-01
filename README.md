@@ -7,7 +7,7 @@ You can take a look of online demo [here](https://0x0000dead-technohack-gas-stre
 Clone the repo and change to the project root directory:
 ```
 git clone https://github.com/0x0000dead/technohack-gas.git
-cd coal-classification-miners
+cd technohack-gas
 ```
 
 Install requirements:
