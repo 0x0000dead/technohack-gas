@@ -26,10 +26,11 @@ st.markdown(
     "Разработанное решение позволит быстро и эффективно обнаруживать утечки, что сэкономит время и "
     "деньги на ремонт, а также предотвратит негативное влияние на окружающую среду.")
 
-st.markdown("<b><h3>Получить актуальное состояние системы:</b></h3>", unsafe_allow_html=True)
+st.markdown("<b><h3>Состояние системы обновляется раз в 2 секунды:</b></h3>", unsafe_allow_html=True)
 import time
 st.subheader("Интерактивная карта состояния Северного потока 2")
 st_sever = st.empty()
+st_text = st.empty()
 st_nsk = st.empty()
 first = True
 while True:
@@ -47,7 +48,7 @@ while True:
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i}; t = {temperatures[i]}℃' for i in range(len(temperatures))]
+            text=[f'Датчик {i} t = {temperatures[i]}' for i in range(len(temperatures))]
         )
     )
     fig.update_layout(
@@ -68,7 +69,7 @@ while True:
 
     st_sever.plotly_chart(fig, use_container_width=True)
 
-    if first: st.subheader("Интерактивная карта состояния Новосибирского потока")
+    st_text.subheader("Интерактивная карта состояния Новосибирского потока")
     fig = go.Figure(
         go.Scattermapbox(
             name="<b>Новосибирский поток</b>",
@@ -81,7 +82,7 @@ while True:
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i}; t = {temperatures1[i]}℃' for i in range(len(temperatures1))]
+            text=[f'Датчик {i}\nТемпература {temperatures1[i]}' for i in range(len(temperatures1))]
         )
     )
 
