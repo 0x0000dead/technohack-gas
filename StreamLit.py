@@ -44,12 +44,22 @@ if st.button('Для Северного Потока 2', help="Для Север
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i}\nТемпература {temperatures[i]}' for i in range(len(temperatures))]
+            text=[f'Датчик {i} t = {temperatures[i]}' for i in range(len(temperatures))]
         )
     )
     fig.update_layout(
         mapbox_style="open-street-map",
         title='Россия',
+        autosize=True,
+        mapbox=dict(
+            bearing=0,
+            center=dict(
+                lat=np.mean(lat),
+                lon=np.mean(lon)
+            ),
+            pitch=0,
+            zoom=4
+        ),
     )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
@@ -77,6 +87,16 @@ if st.button('Для Новосибирского потока', help="Для Н
     fig.update_layout(
         mapbox_style="open-street-map",
         title='Россия',
+        autosize=True,
+        mapbox=dict(
+            bearing=0,
+            center=dict(
+                lat=np.mean(lat_nsk),
+                lon=np.mean(lon_nsk)
+            ),
+            pitch=0,
+            zoom=13
+        ),
     )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
