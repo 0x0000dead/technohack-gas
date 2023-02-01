@@ -1,6 +1,8 @@
-import streamlit as st
-import plotly.graph_objects as go
+import time
+
 import numpy as np
+import plotly.graph_objects as go
+import streamlit as st
 
 st.set_page_config(layout="wide")
 
@@ -12,8 +14,9 @@ lon = [28.0733, 28.0898, 28.0547, 27.8032, 27.4783, 26.9532, 26.673, 26.2917, 26
        22.1672, 21.2, 20.4217, 18.7936, 18.57, 18.1134, 16.4717, 16.4633, 15.9249, 15.2533, 14.1674, 14.016, 13.8041,
        13.8009, 13.7895, 13.7806, 13.7081, 13.707, 13.6325, 13.633, 13.6398]
 
-lat_nsk = [54.859249, 54.858190, 54.849264,54.844629, 54.844280]
-lon_nsk = [83.086347, 83.083929, 83.084680, 83.088186,83.092101 ]
+lat_nsk = [54.859249, 54.858190, 54.849264, 54.844629, 54.844280]
+lon_nsk = [83.086347, 83.083929, 83.084680, 83.088186, 83.092101]
+
 # fill data
 mean_temp, std = 8.0, 2
 temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
@@ -22,17 +25,18 @@ temperatures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
 st.title("Система по контролю состояния трубопровода от команды Users")
 
 st.markdown(
-    "Разработанная система использует микроконтроллеры с передачей данных по Bluetooth, которые поступают на сервер, где происходит анализ и визуализация."
+    "Разработанная система использует микроконтроллеры с передачей данных по Bluetooth, которые поступают на сервер, "
+    "где происходит анализ и визуализация. "
     "Разработанное решение позволит быстро и эффективно обнаруживать утечки, что сэкономит время и "
     "деньги на ремонт, а также предотвратит негативное влияние на окружающую среду.")
 
 st.markdown("<b><h3>Состояние системы обновляется раз в 2 секунды:</b></h3>", unsafe_allow_html=True)
-import time
+
 st.subheader("Интерактивная карта состояния Северного потока 2")
 st_sever = st.empty()
 st_text = st.empty()
 st_nsk = st.empty()
-first = True
+
 while True:
     temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
     temperatures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
@@ -103,5 +107,4 @@ while True:
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
     st_nsk.plotly_chart(fig, use_container_width=True)
-    first = False
     time.sleep(2)
