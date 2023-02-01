@@ -27,11 +27,14 @@ st.markdown(
     "деньги на ремонт, а также предотвратит негативное влияние на окружающую среду.")
 
 st.markdown("<b><h3>Получить актуальное состояние системы:</b></h3>", unsafe_allow_html=True)
-if st.button('Для Северного Потока 2', help="Для Северного Потока 2"):
-    import time
-    st.subheader("Интерактивная карта состояния Северного потока 2")
-    # while True:
-    #     temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
+import time
+st.subheader("Интерактивная карта состояния Северного потока 2")
+st_sever = st.empty()
+st_nsk = st.empty()
+first = True
+while True:
+    temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
+    temperatures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
     fig = go.Figure(
         go.Scattermapbox(
             name="<b>Северный поток - 2</b>",
@@ -63,11 +66,9 @@ if st.button('Для Северного Потока 2', help="Для Север
     )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
-    st.plotly_chart(fig, use_container_width=True)
+    st_sever.plotly_chart(fig, use_container_width=True)
 
-
-if st.button('Для Новосибирского потока', help="Для Новосибирска"):
-    st.subheader("Интерактивная карта состояния Новосибирского потока")
+    if first: st.subheader("Интерактивная карта состояния Новосибирского потока")
     fig = go.Figure(
         go.Scattermapbox(
             name="<b>Новосибирский поток</b>",
@@ -100,4 +101,6 @@ if st.button('Для Новосибирского потока', help="Для Н
     )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
-    st.plotly_chart(fig, use_container_width=True)
+    st_nsk.plotly_chart(fig, use_container_width=True)
+    first = False
+    time.sleep(2)
