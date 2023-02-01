@@ -29,7 +29,6 @@ st.markdown(
 st.markdown("<b><h3>Получить актуальное состояние системы:</b></h3>", unsafe_allow_html=True)
 if st.button('Для Северного Потока 2', help="Для Северного Потока 2"):
     import time
-    st_obj = st.empty()
     st.subheader("Интерактивная карта состояния Северного потока 2")
     # while True:
     #     temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
@@ -54,7 +53,7 @@ if st.button('Для Северного Потока 2', help="Для Север
     )
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
 
-    st_obj.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
 
 
 if st.button('Для Новосибирского потока', help="Для Новосибирска"):
