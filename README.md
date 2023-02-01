@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 And run:
 ```
-streamlit run streamplit.py
+streamlit run StreamLit.py
 ```
 
 ### Используемое решение
