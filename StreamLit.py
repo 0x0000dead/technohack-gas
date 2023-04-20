@@ -52,7 +52,7 @@ while True:
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i} t = {temperatures[i]}' for i in range(len(temperatures))]
+            text=[f'Датчик {i}\nДавление p = {temperatures[i]}' for i in range(len(temperatures))]
         )
     )
     fig.update_layout(
@@ -86,7 +86,7 @@ while True:
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i}\nТемпература {temperatures1[i]}' for i in range(len(temperatures1))]
+            text=[f'Датчик {i}\nДавление p = {temperatures1[i]}' for i in range(len(temperatures1))]
         )
     )
 
