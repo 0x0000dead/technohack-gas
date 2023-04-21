@@ -18,17 +18,18 @@ lat_nsk = [54.859249, 54.858190, 54.849264, 54.844629, 54.844280]
 lon_nsk = [83.086347, 83.083929, 83.084680, 83.088186, 83.092101]
 
 # fill data
-mean_temp, std = 8.0, 2
-temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
-temperatures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
+mean_temp, std = 600, 350
+pressures = np.random.normal(mean_temp, std, len(lat)).round(4)
+pressures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
 
-st.title("Система по контролю состояния трубопровода от команды Users")
+st.title("Система по контролю состояния трубопровода от команды \"Мне пять\"")
 
 st.markdown(
-    "Разработанная система использует микроконтроллеры с передачей данных по Bluetooth, которые поступают на сервер, "
+    "Разработанная система использует датчики с передачей данных по акустическому модему и обычной сети, "
+    "которые поступают на сервер,"
     "где происходит анализ и визуализация. "
-    "Разработанное решение позволит быстро и эффективно обнаруживать утечки, что сэкономит время и "
-    "деньги на ремонт, а также предотвратит негативное влияние на окружающую среду.")
+    "Разработанное решение позволит быстро диагностировать трубы и эффективно предотвращать утечки, "
+    "что также предотвращать негативное влияние на окружающую среду.")
 
 st.markdown("<b><h3>Состояние системы обновляется раз в 2 секунды:</b></h3>", unsafe_allow_html=True)
 
@@ -38,8 +39,8 @@ st_text = st.empty()
 st_nsk = st.empty()
 
 while True:
-    temperatures = np.random.normal(mean_temp, std, len(lat)).round(4)
-    temperatures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
+    pressures = np.random.normal(mean_temp, std, len(lat)).round(4)
+    pressures1 = np.random.normal(20, std, len(lat_nsk)).round(4)
     fig = go.Figure(
         go.Scattermapbox(
             name="<b>Северный поток - 2</b>",
@@ -48,11 +49,11 @@ while True:
             mode='lines+markers',
             line=dict(width=1, color='black'),
             marker=dict(
-                color=["red" if abs(temp - temperatures.mean()) > std else "green" for temp in temperatures],
+                color=["red" if abs(temp - pressures.mean()) > std else "green" for temp in pressures],
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i} t = {temperatures[i]}' for i in range(len(temperatures))]
+            text=[f'Датчик {i} p = {pressures[i]}' for i in range(len(pressures))]
         )
     )
     fig.update_layout(
@@ -82,11 +83,11 @@ while True:
             mode='lines+markers',
             line=dict(width=1, color='black'),
             marker=dict(
-                color=["red" if abs(temp - temperatures1.mean()) > std else "green" for temp in temperatures1],
+                color=["red" if abs(temp - pressures1.mean()) > std else "green" for temp in pressures1],
                 size=10,
                 symbol='circle'
             ),
-            text=[f'Датчик {i}\nТемпература {temperatures1[i]}' for i in range(len(temperatures1))]
+            text=[f'Датчик {i}\nДавление {pressures1[i]}' for i in range(len(pressures1))]
         )
     )
 
